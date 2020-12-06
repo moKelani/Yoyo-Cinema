@@ -40,8 +40,8 @@ class BaseCell: UICollectionViewCell, CellReusable {
 
     override func layoutSubviews() {
         super.layoutSubviews()
-        contentView.layer.cornerRadius = 10.0
-        contentView.layer.masksToBounds = true
+        thumbnailImageView.layer.cornerRadius = 10.0
+        thumbnailImageView.layer.masksToBounds = true
 
     }
 
@@ -68,7 +68,7 @@ class BaseCell: UICollectionViewCell, CellReusable {
 
     }
 
-    private func setupConstraints() {
+    func setupConstraints() {
         NSLayoutConstraint.activate([
             thumbnailImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             thumbnailImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),

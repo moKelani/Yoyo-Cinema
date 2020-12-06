@@ -39,7 +39,8 @@ class FavoriteCell: BaseCell {
         contentView.addSubview(favoriteImageView)
     }
 
-    private func setupConstraints() {
+    override func setupConstraints() {
+        super.setupConstraints()
         NSLayoutConstraint.activate([
             favoriteImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
             favoriteImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),

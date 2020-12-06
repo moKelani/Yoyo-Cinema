@@ -25,7 +25,6 @@ class BaseTableViewCell: UITableViewCell, CellReusable {
     func configCell(type: MovieCellType) {
        setConstraints()
         moviesCollectionView.updateCellType(movieCellType: type)
-        //moviesCollectionView.setup()
     }
 
     func setConstraints() {

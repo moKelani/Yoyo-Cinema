@@ -45,8 +45,8 @@ class MovieCollectionViewDataSource: NSObject, UICollectionViewDelegate, UIColle
         let item = itemsForCollection[indexPath.row]
         switch item {
         case .cellItem(let movie):
-            let cell: MovieCell = collectionView.dequeueReusableCell(withReuseIdentifier: MovieCell.identifier, for: indexPath) as! MovieCell
-            cell.configCell(movie: movie)
+            let cell: MovieCell? = collectionView.dequeueReusableCell(for: indexPath)
+            cell?.configCell(movie: movie)
             return cell ?? UICollectionViewCell()
         }
     }

@@ -96,7 +96,7 @@ class MovieListViewController: UIViewController {
         title = "Movies"
         showDefaultNavigationBar()
 
-        collectionView.register(UINib(nibName: MovieCell.identifier, bundle: nil), forCellWithReuseIdentifier: MovieCell.identifier)
+        collectionView.register(MovieCell.self, forCellWithReuseIdentifier: MovieCell.identifier)
         if let type = listType {
            movieListViewModelInput?.getMovieList(with: type)
         }
