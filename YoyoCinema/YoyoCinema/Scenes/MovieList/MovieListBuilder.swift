@@ -16,9 +16,8 @@ struct MovieListBuilder {
         viewController.movieListViewModelInput = viewModel
         viewController.listType = listType
         viewModel.viewModelOutput = viewController
-        
+
         return viewController
     }
 
 }
-

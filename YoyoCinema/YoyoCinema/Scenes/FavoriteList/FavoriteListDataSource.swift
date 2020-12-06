@@ -8,17 +8,17 @@
 
 import UIKit
 
-class FavoriteListDataSource: NSObject, UICollectionViewDelegate, UICollectionViewDataSource ,UICollectionViewDelegateFlowLayout {
+class FavoriteListDataSource: NSObject, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         GlobalVariables.FavoriteList.count
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: FavoriteCell? = collectionView.dequeueReusableCell(for: indexPath)
         cell?.configCell(movie: GlobalVariables.FavoriteList[indexPath.row])
         return cell ?? UICollectionViewCell()
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 140, height: 240)
     }
@@ -28,6 +28,5 @@ class FavoriteListDataSource: NSObject, UICollectionViewDelegate, UICollectionVi
                         insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 5, left: 20, bottom: 20, right: 5)
     }
-    
-    
+
 }

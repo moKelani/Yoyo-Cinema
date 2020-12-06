@@ -11,7 +11,7 @@ import Foundation
 struct Endpoint {
     var path: String
     var queryItems: [URLQueryItem] = [URLQueryItem(name: "api_key", value: "1f54bd990f1cdfb230adb312546d765d")]
-    
+
     init(path: String, queryItems: [URLQueryItem] = []) {
         self.path = path
         self.queryItems.append(contentsOf: queryItems)
@@ -26,7 +26,6 @@ extension Endpoint {
         components.path = "/3" + path
         components.queryItems = queryItems
 
-        
         guard let url = components.url else {
             preconditionFailure(
                 "Invalid URL components: \(components)"
@@ -39,7 +38,7 @@ extension Endpoint {
 }
 
 extension Endpoint {
-    
+
     static func discoverList(sortby: String? = nil, withPage page: Int) -> Self {
         if let sort = sortby {
             return Endpoint(path: "/discover/movie",
@@ -48,10 +47,9 @@ extension Endpoint {
            return Endpoint(path: "/discover/movie",
             queryItems: [URLQueryItem(name: "page", value: String(page))])
         }
-        
+
     }
 
-    
     static func movieList(path: String, withPage page: Int) -> Self {
         Endpoint(path: "/movie/\(path)",
         queryItems: [URLQueryItem(name: "page", value: String(page))])
@@ -69,7 +67,3 @@ extension Endpoint {
         )
     }
 }
-
-
-
-

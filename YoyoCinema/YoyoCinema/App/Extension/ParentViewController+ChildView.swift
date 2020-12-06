@@ -34,7 +34,6 @@ extension UICollectionViewCell {
     }
 }
 
-
 extension UITableViewHeaderFooterView {
     var parentViewController: UIViewController? {
         var parentResponder: UIResponder? = self

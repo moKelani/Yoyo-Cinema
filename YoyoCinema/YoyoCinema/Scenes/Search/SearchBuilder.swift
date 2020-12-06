@@ -18,6 +18,4 @@ struct SearchBuilder {
         return viewController
     }
 
-
 }
-

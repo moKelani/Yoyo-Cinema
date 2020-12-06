@@ -9,7 +9,7 @@
 import UIKit
 
 class YoyoTabBarController: UITabBarController {
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         tabBar.layer.borderWidth = 0.0
@@ -18,12 +18,10 @@ class YoyoTabBarController: UITabBarController {
          UITabBar.appearance().barTintColor = UIColor.white
          UITabBar.appearance().tintColor = UIColor(named: "yellow_color")
         UITabBar.appearance().unselectedItemTintColor = UIColor.black
-        
+
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
 
-
 }
-

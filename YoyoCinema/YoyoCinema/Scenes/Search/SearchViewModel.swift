@@ -17,7 +17,7 @@ protocol SearchListViewModelOutput: AnyObject, BaseViewModelOutput {
 }
 
 class SearchListViewModel: SearchListViewModelInput {
-    
+
     weak var viewModelOutput: MovieListViewModelOutput?
     // input
     private var movieListRepository: MovieListRepository!
@@ -25,11 +25,11 @@ class SearchListViewModel: SearchListViewModelInput {
     private var currentPage = 1
     private var totalResults = 1
     private var query = ""
-    
+
     init(movieListRepository: MovieListRepository = MovieListRepository()) {
         self.movieListRepository = movieListRepository
     }
-    
+
     func searchList(query: String) {
         self.query = query
       getData(query: query, page: 1, movieListRepository: movieListRepository)
@@ -40,7 +40,7 @@ class SearchListViewModel: SearchListViewModelInput {
       loadMore(query: query, page: currentPage+1, movieListRepository: self.movieListRepository)
         }
     }
-    
+
 }
 
 // MARK: Setup
@@ -63,7 +63,7 @@ extension SearchListViewModel {
                  print(movieList)
                  self.viewModelOutput?.updateData(itemsForCollection: self.createItemsForTable(movieList: movieList.results))
                  self.totalResults = movieList.total_results
-                   
+
                case .failure(let error):
                    print(error)
                    self.viewModelOutput?.emptyState(emptyPlaceHolderType: .error(message: error.localizedDescription))
@@ -82,20 +82,19 @@ extension SearchListViewModel {
                case .success(let movieList):
                  print(movieList)
                  self.viewModelOutput?.updateCollectionView(itemsForCollection: self.createItemsForTable(movieList: movieList.results))
-                   
+
                case .failure(let error):
                    print(error)
                    self.viewModelOutput?.emptyState(emptyPlaceHolderType: .error(message: error.localizedDescription))
                }
            }
        }
-       
+
        private func createItemsForTable(movieList: [Movie]) -> [ItemCollectionViewCellType] {
            let itemsForTable: [ItemCollectionViewCellType] = movieList.map { movie -> ItemCollectionViewCellType in
                return ItemCollectionViewCellType.cellItem(movie: movie)
            }
            return itemsForTable
        }
-    
-}
 
+}

@@ -15,6 +15,4 @@ struct FavoriteListBuilder {
         return viewController
     }
 
-   
 }
-

@@ -15,7 +15,7 @@ struct DiscoverListBuilder {
         let viewController: MovieListViewController = MovieListViewController(withViewModel: viewModel)
         viewController.discoverListViewModelInput = viewModel
         viewModel.viewModelOutput = viewController
-        
+
         return viewController
     }
 

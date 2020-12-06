@@ -12,25 +12,24 @@ enum ItemCollectionViewCellType {
     case cellItem(movie: Movie)
 }
 
-class MovieCollectionViewDataSource: NSObject, UICollectionViewDelegate, UICollectionViewDataSource ,UICollectionViewDelegateFlowLayout {
+class MovieCollectionViewDataSource: NSObject, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
     var itemsForCollection: [ItemCollectionViewCellType]
-    
+
     weak var movieListViewModelInput: MovieListViewModelInput?
     weak var discoverListViewModelInput: DiscoverListViewModelInput?
     weak var searchListViewModelInput: SearchListViewModelInput?
-
 
     init(itemsForCollection: [ItemCollectionViewCellType], viewModel: MovieListViewModelInput) {
         self.itemsForCollection = itemsForCollection
         movieListViewModelInput = viewModel
     }
-    
+
     init(itemsForCollection: [ItemCollectionViewCellType], viewModel: DiscoverListViewModelInput) {
         self.itemsForCollection = itemsForCollection
         discoverListViewModelInput = viewModel
     }
-    
+
     init(itemsForCollection: [ItemCollectionViewCellType], viewModel: SearchListViewModelInput) {
         self.itemsForCollection = itemsForCollection
         searchListViewModelInput = viewModel
@@ -51,21 +50,21 @@ class MovieCollectionViewDataSource: NSObject, UICollectionViewDelegate, UIColle
             return cell ?? UICollectionViewCell()
         }
     }
-    
+
     func collectionView(_ collectionView: UICollectionView,
                  willDisplay cell: UICollectionViewCell,
                    forItemAt indexPath: IndexPath) {
-        
+
         movieListViewModelInput?.paginateMore(indexPath, dataSourceCount: itemsForCollection.count)
         discoverListViewModelInput?.paginateMore(indexPath, dataSourceCount: itemsForCollection.count)
         searchListViewModelInput?.paginateMore(indexPath, dataSourceCount: itemsForCollection.count)
-    
+
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
+
         let cellWidth = (collectionView.frame.size.width - 50)/2
-        
+
         return CGSize(width: cellWidth, height: cellWidth*1.75)
     }
 
@@ -75,4 +74,3 @@ class MovieCollectionViewDataSource: NSObject, UICollectionViewDelegate, UIColle
         return UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
     }
 }
-

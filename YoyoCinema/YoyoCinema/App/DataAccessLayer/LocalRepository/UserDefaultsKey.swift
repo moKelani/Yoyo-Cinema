@@ -12,4 +12,3 @@ enum UserDefaultsKey: String {
     case favoriteList
 
 }
-

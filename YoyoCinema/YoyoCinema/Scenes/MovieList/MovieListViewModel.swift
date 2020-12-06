@@ -20,25 +20,25 @@ protocol MovieListViewModelOutput: AnyObject, BaseViewModelOutput {
 }
 
 class MovieListViewModel: MovieListViewModelInput {
-    
+
     weak var viewModelOutput: MovieListViewModelOutput?
     // input
     private var movieListRepository: MovieListRepository!
-    
+
     private var currentPage = 1
     private var totalResults = 1
     private var currentPath = "now_playing"
-    
+
     init(movieListRepository: MovieListRepository = MovieListRepository()) {
         self.movieListRepository = movieListRepository
     }
-    
+
     func getMovieList(with index: Int) {
        currentPath = index == 0 ? "now_playing" : "upcoming"
        getData(path: currentPath, page: 1, movieListRepository: self.movieListRepository)
-        
+
     }
-    
+
     func paginateMore(_ indexPath: IndexPath, dataSourceCount: Int) {
         if indexPath.row + 1 == dataSourceCount && dataSourceCount < totalResults {
             loadMore(page: currentPage+1, movieListRepository: self.movieListRepository)
@@ -66,7 +66,7 @@ extension MovieListViewModel {
               print(movieList)
               self.viewModelOutput?.updateData(itemsForCollection: self.createItemsForTable(movieList: movieList.results))
               self.totalResults = movieList.total_results
-                
+
             case .failure(let error):
                 print(error)
                 self.viewModelOutput?.emptyState(emptyPlaceHolderType: .error(message: error.localizedDescription))
@@ -85,14 +85,14 @@ extension MovieListViewModel {
             case .success(let movieList):
               print(movieList)
               self.viewModelOutput?.updateCollectionView(itemsForCollection: self.createItemsForTable(movieList: movieList.results))
-                
+
             case .failure(let error):
                 print(error)
                 self.viewModelOutput?.emptyState(emptyPlaceHolderType: .error(message: error.localizedDescription))
             }
         }
     }
-    
+
     private func createItemsForTable(movieList: [Movie]) -> [ItemCollectionViewCellType] {
         let itemsForTable: [ItemCollectionViewCellType] = movieList.map { movie -> ItemCollectionViewCellType in
             return ItemCollectionViewCellType.cellItem(movie: movie)

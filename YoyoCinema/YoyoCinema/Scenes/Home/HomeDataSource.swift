@@ -17,10 +17,10 @@ class HomeDataSource: NSObject, UITableViewDelegate, UITableViewDataSource {
         return 2
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
+
         return 1
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: BaseTableViewCell? = tableView.dequeueReusableCell(for: indexPath)
         switch indexPath.section {
@@ -31,10 +31,10 @@ class HomeDataSource: NSObject, UITableViewDelegate, UITableViewDataSource {
         default:
             break
         }
-        
+
         return cell ?? UITableViewCell()
     }
-    
+
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard let headerView: MovieTableViewHeader = tableView.dequeueReusableHeaderFooterView(withIdentifier: MovieTableViewHeader.identifier) as? MovieTableViewHeader else {
             return nil
@@ -59,13 +59,13 @@ class HomeDataSource: NSObject, UITableViewDelegate, UITableViewDataSource {
            return 520
         }
     }
-    
+
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 40
     }
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //MovieListBuilder.viewController()
     }
-    
+
 }

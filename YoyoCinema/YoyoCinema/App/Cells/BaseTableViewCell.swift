@@ -15,20 +15,19 @@ class BaseTableViewCell: UITableViewCell, CellReusable {
         moviesView.translatesAutoresizingMaskIntoConstraints = false
         return moviesView
     }()
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        
-        
+
     }
-    
+
     func configCell(type: MovieCellType) {
        setConstraints()
         moviesCollectionView.updateCellType(movieCellType: type)
         //moviesCollectionView.setup()
     }
-    
+
     func setConstraints() {
         contentView.addSubview(moviesCollectionView)
         NSLayoutConstraint.activate([
@@ -38,6 +37,5 @@ class BaseTableViewCell: UITableViewCell, CellReusable {
             moviesCollectionView.topAnchor.constraint(equalTo: contentView.topAnchor)
         ])
     }
-
 
 }

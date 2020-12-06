@@ -8,17 +8,17 @@
 
 import Foundation
 
-struct MovieList : Codable {
-    let page : Int
-    let results : [Movie]
+struct MovieList: Codable {
+    let page: Int
+    let results: [Movie]
     let total_pages: Int
     let total_results: Int
 }
 
-struct Movie : Codable {
-    let poster_path : String?
+struct Movie: Codable {
+    let poster_path: String?
     let backdrop_path: String?
-    let overview : String?
+    let overview: String?
     let release_date: String?
     let genre_ids: [Int]?
     let id: Int?
@@ -29,4 +29,3 @@ struct Movie : Codable {
     let vote_average: Float?
     var isFavorite: Bool? = false
 }
-

@@ -17,7 +17,7 @@ enum EmptyPlaceHolderType {
 }
 
 class EmptyPlaceHolderView: UIView {
-    
+
     var emptyPlaceHolderType: EmptyPlaceHolderType = .noInternetConnection {
         didSet {
             switch emptyPlaceHolderType {
@@ -39,14 +39,14 @@ class EmptyPlaceHolderView: UIView {
             }
         }
     }
-    
+
     let actionButton: UIButton = {
         let button = UIButton(type: .system)
         button.backgroundColor = .clear
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
-    
+
     var logoImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
@@ -58,7 +58,7 @@ class EmptyPlaceHolderView: UIView {
         ])
         return imageView
     }()
-    
+
     private lazy var contentStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
@@ -70,7 +70,7 @@ class EmptyPlaceHolderView: UIView {
         stackView.addArrangedSubview(labelsStackView)
         return stackView
     }()
-    
+
     private lazy var labelsStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
@@ -83,7 +83,7 @@ class EmptyPlaceHolderView: UIView {
         stackView.addArrangedSubview(actionButton)
         return stackView
     }()
-    
+
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.text = ""
@@ -91,10 +91,10 @@ class EmptyPlaceHolderView: UIView {
         label.textColor = .black
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
-        
+
         return label
     }()
-    
+
     let detailsLabel: UILabel = {
         let label = UILabel()
         label.text = ""
@@ -104,7 +104,7 @@ class EmptyPlaceHolderView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupViews()
@@ -120,7 +120,7 @@ class EmptyPlaceHolderView: UIView {
         addSubview(contentStackView)
         setupConstraints()
     }
-    
+
     private func setupConstraints() {
         NSLayoutConstraint.activate([
             contentStackView.topAnchor.constraint(equalTo: topAnchor, constant: 5),
@@ -130,4 +130,3 @@ class EmptyPlaceHolderView: UIView {
         ])
     }
 }
-

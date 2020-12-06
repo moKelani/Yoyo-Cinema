@@ -17,4 +17,3 @@ extension CellReusable {
         return "\(self)"
     }
 }
-

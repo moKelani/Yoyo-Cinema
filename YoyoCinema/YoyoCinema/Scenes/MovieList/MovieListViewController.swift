@@ -9,38 +9,37 @@
 import UIKit
 
 class MovieListViewController: UIViewController {
-    
+
     // MARK: - Properties
     var movieListViewModelInput: MovieListViewModelInput?
     var discoverListViewModelInput: DiscoverListViewModelInput?
     var searchListViewModelInput: SearchListViewModelInput?
     var movieCollectionViewDataSource: MovieCollectionViewDataSource?
-    
 
     var listType: Int?
     var observation: Any?
     var searchObservation: Any?
-    
+
     // MARK: - UIControls
     private let layout: UICollectionViewFlowLayout  = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         return layout
     }()
-    
+
     lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.backgroundColor = .clear
         return collectionView
     }()
-    
+
     lazy var searchBarView: SearchBarView = {
         let search = SearchBarView()
         search.translatesAutoresizingMaskIntoConstraints = false
         return search
     }()
-    
+
     private var movieListStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
@@ -50,9 +49,9 @@ class MovieListViewController: UIViewController {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
-    
+
     // MARK: - Intializers
-    
+
     @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -62,17 +61,17 @@ class MovieListViewController: UIViewController {
         self.movieListViewModelInput = viewModel
         super.init(nibName: nil, bundle: nil)
     }
-    
+
     init(withViewModel viewModel: DiscoverListViewModel) {
         self.discoverListViewModelInput = viewModel
         super.init(nibName: nil, bundle: nil)
     }
-    
+
     init(withViewModel viewModel: SearchListViewModel) {
         self.searchListViewModelInput = viewModel
         super.init(nibName: nil, bundle: nil)
     }
-    
+
     deinit {
         if let observation = observation {
             NotificationCenter.default.removeObserver(observation)
@@ -91,31 +90,31 @@ class MovieListViewController: UIViewController {
         movieListStackView.addArrangedSubview(collectionView)
         updateConstraints()
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Movies"
         showDefaultNavigationBar()
-        
+
         collectionView.register(UINib(nibName: MovieCell.identifier, bundle: nil), forCellWithReuseIdentifier: MovieCell.identifier)
         if let type = listType {
            movieListViewModelInput?.getMovieList(with: type)
         }
-        
+
         if let viewModel = discoverListViewModelInput {
             rightNavBarItems(sortButton())
             title = "Discover"
             viewModel.discoverList(sortby: "")
         }
-        
+
         if let viewModel = searchListViewModelInput {
             movieListStackView.removeArrangedSubview(collectionView)
-            [searchBarView, collectionView].forEach{
+            [searchBarView, collectionView].forEach {
                 movieListStackView.addArrangedSubview($0)
             }
             title = "Search"
             emptyState(emptyPlaceHolderType: .search)
-            
+
             searchObservation = NotificationCenter.default.addObserver(forName: Notifications.searchTapped.name, object: nil, queue: nil) { result in
                 if let searchText = result.object as? String {
                     self.movieCollectionViewDataSource = nil
@@ -124,7 +123,7 @@ class MovieListViewController: UIViewController {
                 }
             }
         }
-        
+
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -134,12 +133,9 @@ class MovieListViewController: UIViewController {
             }
         }
     }
-   
 
-    
-    
     // MARK: - Auto layout
-    
+
     private func updateConstraints() {
         NSLayoutConstraint.activate([
             movieListStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -157,7 +153,7 @@ class MovieListViewController: UIViewController {
         barButtonItem.target = self
         return barButtonItem
     }
-    
+
     @objc func sortTapped() {
         self.navigationController?.present(UINavigationController(rootViewController: SortByViewController()), animated: true)
     }
@@ -171,25 +167,25 @@ extension MovieListViewController: MovieListViewModelOutput {
         if let viewModel = discoverListViewModelInput {
           movieCollectionViewDataSource = MovieCollectionViewDataSource(itemsForCollection: itemsForCollection, viewModel: viewModel)
         }
-        
+
         if let viewModel = searchListViewModelInput {
           movieCollectionViewDataSource = MovieCollectionViewDataSource(itemsForCollection: itemsForCollection, viewModel: viewModel)
         }
-        
+
         DispatchQueue.main.async {
             self.collectionView.delegate = self.movieCollectionViewDataSource
             self.collectionView.dataSource = self.movieCollectionViewDataSource
             self.collectionView.reloadData()
         }
     }
-    
+
     func updateCollectionView(itemsForCollection: [ItemCollectionViewCellType]) {
         movieCollectionViewDataSource?.itemsForCollection.append(contentsOf: itemsForCollection)
         DispatchQueue.main.async {
             self.collectionView.reloadData()
         }
     }
-    
+
     func emptyState(emptyPlaceHolderType: EmptyPlaceHolderType) {
         DispatchQueue.main.async {
             self.movieCollectionViewDataSource = nil
@@ -199,5 +195,3 @@ extension MovieListViewController: MovieListViewModelOutput {
     }
 
 }
-
-

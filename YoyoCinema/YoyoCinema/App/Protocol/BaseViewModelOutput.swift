@@ -19,7 +19,7 @@ extension BaseViewModelOutput where Self: UIViewController {
         DispatchQueue.main.async {
             self.view.startActivityIndicator()
         }
-        
+
     }
 
     func hideLoading() {
@@ -28,5 +28,3 @@ extension BaseViewModelOutput where Self: UIViewController {
         }
     }
 }
-
-

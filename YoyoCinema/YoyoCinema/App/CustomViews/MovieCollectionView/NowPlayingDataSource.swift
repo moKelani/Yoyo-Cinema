@@ -13,18 +13,18 @@ enum HomeCollectionViewType {
     case moreItem
 }
 
-class NowPlayingDataSource: NSObject, UICollectionViewDelegate, UICollectionViewDataSource , UICollectionViewDelegateFlowLayout {
-    
+class NowPlayingDataSource: NSObject, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+
     var itemsForCollection: [HomeCollectionViewType]
 
     init(itemsForCollection: [HomeCollectionViewType]) {
         self.itemsForCollection = itemsForCollection
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return itemsForCollection.count
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
        let item = itemsForCollection[indexPath.row]
        let cell: BaseCell? = collectionView.dequeueReusableCell(for: indexPath)
@@ -36,8 +36,7 @@ class NowPlayingDataSource: NSObject, UICollectionViewDelegate, UICollectionView
             return cell ?? UICollectionViewCell()
         }
     }
- 
-    
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 140, height: 240)
     }
@@ -47,7 +46,5 @@ class NowPlayingDataSource: NSObject, UICollectionViewDelegate, UICollectionView
                         insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 5, left: 20, bottom: 20, right: 5)
     }
-    
-    
-}
 
+}

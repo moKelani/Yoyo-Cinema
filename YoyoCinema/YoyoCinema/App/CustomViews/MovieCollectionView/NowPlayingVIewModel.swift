@@ -10,7 +10,7 @@ import Foundation
 
 protocol NowPlayingViewModelInput: AnyObject {
    func getNowPlayingList(path: String)
-   
+
 }
 
 protocol NowPlayingViewModelOutput: AnyObject {
@@ -18,7 +18,7 @@ protocol NowPlayingViewModelOutput: AnyObject {
 }
 
 class NowPlayingViewModel: NowPlayingViewModelInput {
-    
+
     func getNowPlayingList(path: String) {
         getData(path: path, movieListRepository: self.movieListRepository)
     }
@@ -26,7 +26,7 @@ class NowPlayingViewModel: NowPlayingViewModelInput {
     weak var viewModelOutput: NowPlayingViewModelOutput?
     // input
     private var movieListRepository: MovieListRepository!
-    
+
     init(movieListRepository: MovieListRepository = MovieListRepository(), view: NowPlayingViewModelOutput?) {
         self.movieListRepository = movieListRepository
         self.viewModelOutput = view
@@ -45,15 +45,14 @@ extension NowPlayingViewModel {
             case .success(let movieList):
               print(movieList)
               self.viewModelOutput?.updateData(itemsForCollection: self.createItemsForCollection(movieList: movieList.results))
-                
+
             case .failure(let error):
                 print(error)
             }
         }
 
     }
-    
-    
+
     private func createItemsForCollection(movieList: [Movie]) -> [HomeCollectionViewType] {
         let itemsForTable: [HomeCollectionViewType] = movieList.map { movie -> HomeCollectionViewType in
             return HomeCollectionViewType.cellItem( item: .cellItem(movie: movie))
@@ -61,5 +60,3 @@ extension NowPlayingViewModel {
         return itemsForTable
     }
 }
-
-

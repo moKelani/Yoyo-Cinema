@@ -9,26 +9,25 @@
 import Foundation
 
 struct GlobalVariables {
-    
+
     static var FavoriteList: [Movie] {
 
         get {
-            
+
             if let favoriteList = UserDefaults.standard.data(forKey: UserDefaultsKey.favoriteList.rawValue),
                 let favoriteMovies = try? JSONDecoder().decode([Movie].self, from: favoriteList) {
                 return favoriteMovies
             }
-            
+
             return []
         }
-        
+
         set {
             if let encoded = try? JSONEncoder().encode(newValue) {
                 UserDefaults.standard.set(encoded, forKey: UserDefaultsKey.favoriteList.rawValue)
             }
         }
     }
-    
+
     static var baseURL: String?
 }
-

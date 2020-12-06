@@ -12,7 +12,7 @@ class HomeViewController: UIViewController {
 
     // MARK: - Properties
     var homeDataSource: HomeDataSource?
-    
+
     // MARK: - UIControls
     lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .plain)
@@ -23,17 +23,16 @@ class HomeViewController: UIViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
-    
+
     // MARK: - Intializers
     init() {
            super.init(nibName: nil, bundle: nil)
        }
-       
+
        required init?(coder: NSCoder) {
            fatalError("init(coder:) has not been implemented")
        }
 
-    
     // MARK: - View lifecycle
 
     override func loadView() {
@@ -42,7 +41,7 @@ class HomeViewController: UIViewController {
         view.addSubview(tableView)
         updateConstraints()
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -54,10 +53,10 @@ class HomeViewController: UIViewController {
         tableView.dataSource = homeDataSource
         tableView.reloadData()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+
         guard  Reachability.shared.isConnected else {
             homeDataSource = nil
             tableView.restore()
@@ -65,7 +64,7 @@ class HomeViewController: UIViewController {
             return
         }
     }
-    
+
     // MARK: - AutoLayout
     private func updateConstraints() {
         NSLayoutConstraint.activate([
@@ -74,11 +73,9 @@ class HomeViewController: UIViewController {
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
-       
-        
+
     }
 
-   
 }
 
 extension HomeViewController: BaseViewModelOutput {
@@ -89,8 +86,5 @@ extension HomeViewController: BaseViewModelOutput {
             self.tableView.setEmptyView(emptyPlaceHolderType: emptyPlaceHolderType)
         }
     }
-    
-    
+
 }
-
-

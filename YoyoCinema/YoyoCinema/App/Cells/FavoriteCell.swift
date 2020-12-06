@@ -9,7 +9,7 @@
 import UIKit
 
 class FavoriteCell: BaseCell {
-    
+
     lazy var favoriteImageView: UIImageView = {
         let imageView = UIImageView(image: UIImage(named: "favorite_btn_icon"))
         imageView.contentMode = .scaleAspectFit
@@ -17,28 +17,28 @@ class FavoriteCell: BaseCell {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
-    
+
     override func prepareForReuse() {
         super.prepareForReuse()
         thumbnailImageView.kf.cancelDownloadTask()
         thumbnailImageView.image = nil
     }
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupViews()
     }
-    
+
     override func configCell(movie: Movie) {
         super.configCell(movie: movie)
 
         setupConstraints()
     }
-    
+
     private func setupViews() {
         contentView.addSubview(favoriteImageView)
     }
-    
+
     private func setupConstraints() {
         NSLayoutConstraint.activate([
             favoriteImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),

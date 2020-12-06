@@ -18,6 +18,4 @@ struct MovieDetailsBuilder {
         return viewController
     }
 
-
 }
-
