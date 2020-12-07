@@ -59,7 +59,19 @@
 		461B8A43257DA5F1000E19F9 /* ItemsCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 461B8A42257DA5F1000E19F9 /* ItemsCollection.swift */; };
 		461B8A45257DAC70000E19F9 /* UIView+UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 461B8A44257DAC70000E19F9 /* UIView+UIViewController.swift */; };
 		461B8A47257DB2E1000E19F9 /* BaseMovieViewModelOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 461B8A46257DB2E1000E19F9 /* BaseMovieViewModelOutput.swift */; };
+		461B8A4F257EDDC6000E19F9 /* YoyoCinemaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 461B8A4E257EDDC6000E19F9 /* YoyoCinemaTests.swift */; };
+		461B8A59257EE82D000E19F9 /* DataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 461B8A58257EE82D000E19F9 /* DataLoader.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		461B8A51257EDDC6000E19F9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 461B89A525785A46000E19F9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 461B89AC25785A46000E19F9;
+			remoteInfo = YoyoCinema;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		461B89AD25785A46000E19F9 /* YoyoCinema.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YoyoCinema.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -115,6 +127,11 @@
 		461B8A42257DA5F1000E19F9 /* ItemsCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsCollection.swift; sourceTree = "<group>"; };
 		461B8A44257DAC70000E19F9 /* UIView+UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+UIViewController.swift"; sourceTree = "<group>"; };
 		461B8A46257DB2E1000E19F9 /* BaseMovieViewModelOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseMovieViewModelOutput.swift; sourceTree = "<group>"; };
+		461B8A4C257EDDC6000E19F9 /* YoyoCinemaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YoyoCinemaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		461B8A4E257EDDC6000E19F9 /* YoyoCinemaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YoyoCinemaTests.swift; sourceTree = "<group>"; };
+		461B8A50257EDDC6000E19F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		461B8A57257EE76E000E19F9 /* Data.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Data.json; sourceTree = "<group>"; };
+		461B8A58257EE82D000E19F9 /* DataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataLoader.swift; sourceTree = "<group>"; };
 		B1B73685A5314B1635A90FA7 /* Pods_YoyoCinema.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YoyoCinema.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D89EA0E7BA4443DB35E3A543 /* Pods-YoyoCinema.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YoyoCinema.release.xcconfig"; path = "Target Support Files/Pods-YoyoCinema/Pods-YoyoCinema.release.xcconfig"; sourceTree = "<group>"; };
 		FECEB6C715BC172E195C72E1 /* Pods-YoyoCinema.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YoyoCinema.debug.xcconfig"; path = "Target Support Files/Pods-YoyoCinema/Pods-YoyoCinema.debug.xcconfig"; sourceTree = "<group>"; };
@@ -126,6 +143,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				3E1B51FAA4ADB2E4D78A181C /* Pods_YoyoCinema.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		461B8A49257EDDC6000E19F9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -153,6 +177,7 @@
 			isa = PBXGroup;
 			children = (
 				461B89AF25785A46000E19F9 /* YoyoCinema */,
+				461B8A4D257EDDC6000E19F9 /* YoyoCinemaTests */,
 				461B89AE25785A46000E19F9 /* Products */,
 				32B897776E75CA06B46FDA48 /* Pods */,
 				3DD7922ECB313DC9209F4D30 /* Frameworks */,
@@ -163,6 +188,7 @@
 			isa = PBXGroup;
 			children = (
 				461B89AD25785A46000E19F9 /* YoyoCinema.app */,
+				461B8A4C257EDDC6000E19F9 /* YoyoCinemaTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -386,6 +412,25 @@
 			path = LocalRepository;
 			sourceTree = "<group>";
 		};
+		461B8A4D257EDDC6000E19F9 /* YoyoCinemaTests */ = {
+			isa = PBXGroup;
+			children = (
+				461B8A56257EE746000E19F9 /* DataLoader */,
+				461B8A4E257EDDC6000E19F9 /* YoyoCinemaTests.swift */,
+				461B8A50257EDDC6000E19F9 /* Info.plist */,
+			);
+			path = YoyoCinemaTests;
+			sourceTree = "<group>";
+		};
+		461B8A56257EE746000E19F9 /* DataLoader */ = {
+			isa = PBXGroup;
+			children = (
+				461B8A57257EE76E000E19F9 /* Data.json */,
+				461B8A58257EE82D000E19F9 /* DataLoader.swift */,
+			);
+			path = DataLoader;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -408,6 +453,24 @@
 			productReference = 461B89AD25785A46000E19F9 /* YoyoCinema.app */;
 			productType = "com.apple.product-type.application";
 		};
+		461B8A4B257EDDC6000E19F9 /* YoyoCinemaTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 461B8A53257EDDC6000E19F9 /* Build configuration list for PBXNativeTarget "YoyoCinemaTests" */;
+			buildPhases = (
+				461B8A48257EDDC6000E19F9 /* Sources */,
+				461B8A49257EDDC6000E19F9 /* Frameworks */,
+				461B8A4A257EDDC6000E19F9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				461B8A52257EDDC6000E19F9 /* PBXTargetDependency */,
+			);
+			name = YoyoCinemaTests;
+			productName = YoyoCinemaTests;
+			productReference = 461B8A4C257EDDC6000E19F9 /* YoyoCinemaTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -420,6 +483,10 @@
 				TargetAttributes = {
 					461B89AC25785A46000E19F9 = {
 						CreatedOnToolsVersion = 11.6;
+					};
+					461B8A4B257EDDC6000E19F9 = {
+						CreatedOnToolsVersion = 11.6;
+						TestTargetID = 461B89AC25785A46000E19F9;
 					};
 				};
 			};
@@ -437,6 +504,7 @@
 			projectRoot = "";
 			targets = (
 				461B89AC25785A46000E19F9 /* YoyoCinema */,
+				461B8A4B257EDDC6000E19F9 /* YoyoCinemaTests */,
 			);
 		};
 /* End PBXProject section */
@@ -448,6 +516,13 @@
 			files = (
 				461B89BD25785A47000E19F9 /* LaunchScreen.storyboard in Resources */,
 				461B89BA25785A47000E19F9 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		461B8A4A257EDDC6000E19F9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -552,7 +627,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		461B8A48257EDDC6000E19F9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				461B8A59257EE82D000E19F9 /* DataLoader.swift in Sources */,
+				461B8A4F257EDDC6000E19F9 /* YoyoCinemaTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		461B8A52257EDDC6000E19F9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 461B89AC25785A46000E19F9 /* YoyoCinema */;
+			targetProxy = 461B8A51257EDDC6000E19F9 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		461B89BB25785A47000E19F9 /* LaunchScreen.storyboard */ = {
@@ -716,6 +808,44 @@
 			};
 			name = Release;
 		};
+		461B8A54257EDDC6000E19F9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = YoyoCinemaTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = kelany.YoyoCinemaTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/YoyoCinema.app/YoyoCinema";
+			};
+			name = Debug;
+		};
+		461B8A55257EDDC6000E19F9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = YoyoCinemaTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = kelany.YoyoCinemaTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/YoyoCinema.app/YoyoCinema";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -733,6 +863,15 @@
 			buildConfigurations = (
 				461B89C225785A47000E19F9 /* Debug */,
 				461B89C325785A47000E19F9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		461B8A53257EDDC6000E19F9 /* Build configuration list for PBXNativeTarget "YoyoCinemaTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				461B8A54257EDDC6000E19F9 /* Debug */,
+				461B8A55257EDDC6000E19F9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
