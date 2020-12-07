@@ -59,5 +59,4 @@ extension NowPlayingViewModel: MovieCellDelegate {
         viewModelOutput?.gotoMovieDetails(movie: movie)
     }
     
-    
 }

@@ -80,7 +80,6 @@ extension MovieCollectionView: NowPlayingViewModelOutput {
         if let viewModel = nowPlayingViewModelInput {
             nowPlayingDataSource = NowPlayingDataSource(itemsForCollection: itemsForCollection, viewModel: viewModel)
         }
-        
 
         DispatchQueue.main.async {
             self.nowPlayingCollectionView.delegate = self.nowPlayingDataSource
@@ -89,4 +88,3 @@ extension MovieCollectionView: NowPlayingViewModelOutput {
         }
     }
 }
-

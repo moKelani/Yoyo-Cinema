@@ -8,9 +8,6 @@
 
 import UIKit
 
-
-
-
 class MovieCell: BaseCell {
 
     let movieReleaseDateLabel: UILabel = {
@@ -53,10 +50,9 @@ class MovieCell: BaseCell {
     }
     
     private func setupViews() {
-        [movieReleaseDateLabel, movieRateLabel, movieTitleLabel].forEach{
+        [movieReleaseDateLabel, movieRateLabel, movieTitleLabel].forEach {
            contentView.addSubview($0)
         }
-        
 
     }
 
@@ -104,8 +100,5 @@ class MovieCell: BaseCell {
         movieReleaseDateLabel.text = movie.release_date
         movieTitleLabel.text = movie.title
     }
-    
-    
-
 
 }

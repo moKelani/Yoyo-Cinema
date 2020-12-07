@@ -104,7 +104,4 @@ extension FavoriteListViewController: MovieCellDelegate {
         navigationController?.pushViewController(movieDetailsVC, animated: true)
     }
     
-    
-    
-    
 }

@@ -94,8 +94,4 @@ extension HomeViewController: MovieHeaderDelegate {
         navigationController?.pushViewController(movieList, animated: true)
     }
     
-    
 }
-
-
-

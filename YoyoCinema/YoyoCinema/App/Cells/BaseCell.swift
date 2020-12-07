@@ -17,7 +17,7 @@ class BaseCell: UICollectionViewCell, CellReusable {
 
     var movie: Movie?
 
-    weak var delegate:MovieCellDelegate?
+    weak var delegate: MovieCellDelegate?
     
     lazy var thumbnailImageView: UIImageView = {
         let imageView = UIImageView(image: UIImage(named: "image_placeholder_icon"))

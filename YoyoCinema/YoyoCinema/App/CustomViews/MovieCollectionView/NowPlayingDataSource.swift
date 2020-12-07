@@ -8,8 +8,6 @@
 
 import UIKit
 
-
-
 class NowPlayingDataSource: NSObject, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
     var itemsForCollection: [ItemCollectionViewCellType]
