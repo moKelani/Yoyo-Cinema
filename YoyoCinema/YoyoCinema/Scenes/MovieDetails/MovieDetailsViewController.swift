@@ -55,7 +55,7 @@ class MovieDetailsViewController: UIViewController {
     }()
 
     lazy var bannerImageView: UIImageView = {
-        let imageView = UIImageView()
+        let imageView = UIImageView(image: UIImage(named: "image_placeholder_icon"))
         imageView.contentMode = .scaleAspectFill
         imageView.isUserInteractionEnabled = true
         imageView.clipsToBounds = true
@@ -64,7 +64,7 @@ class MovieDetailsViewController: UIViewController {
     }()
 
     lazy var movieImageView: UIImageView = {
-        let imageView = UIImageView()
+        let imageView = UIImageView(image: UIImage(named: "image_placeholder_icon"))
         imageView.contentMode = .scaleAspectFit
         imageView.isUserInteractionEnabled = true
         imageView.clipsToBounds = true
@@ -191,13 +191,11 @@ class MovieDetailsViewController: UIViewController {
 extension MovieDetailsViewController: MovieDetailsViewModelOutput {
     func updateData(movie: Movie) {
 
-        if let path = movie.backdrop_path, let url = URL(string: "https://image.tmdb.org/t/p/w1280/" + path) {
-            print("url", url)
+        if let path = movie.backdrop_path, let url = URL(string: GlobalVariables.backDropBaseURL + path) {
             bannerImageView.kf.setImage(with: url)
         }
 
-        if let path = movie.poster_path, let url = URL(string: "https://image.tmdb.org/t/p/w440_and_h660_face" + path) {
-            print("url", url)
+        if let path = movie.poster_path, let url = URL(string: GlobalVariables.posterBaseURL + path) {
             movieImageView.kf.setImage(with: url)
         }
 
@@ -205,7 +203,6 @@ extension MovieDetailsViewController: MovieDetailsViewModelOutput {
         movieReleaseDateLabel.text = movie.release_date ?? ""
         movieRateLabel.text = "\(movie.vote_average ?? 0.0)"
         movieOverViewLabel.text = movie.overview ?? ""
-        print(GlobalVariables.FavoriteList)
         updateRighBarButton(isFavourite: false)
         for value in GlobalVariables.FavoriteList where movie.id == value.id {
             isFavourited = true

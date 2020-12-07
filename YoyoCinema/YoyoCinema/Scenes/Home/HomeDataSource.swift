@@ -13,6 +13,13 @@ enum MovieCellType {
 import UIKit
 
 class HomeDataSource: NSObject, UITableViewDelegate, UITableViewDataSource {
+    
+    weak var viewController: HomeViewController?
+    
+    init(viewController: HomeViewController) {
+        self.viewController = viewController
+    }
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
@@ -41,11 +48,12 @@ class HomeDataSource: NSObject, UITableViewDelegate, UITableViewDataSource {
         }
         switch section {
         case 0:
-            headerView.backgroundColor = .clear
             headerView.configCell(title: "Now Playing")
+            headerView.delegate = viewController
             return headerView
         case 1:
             headerView.configCell(title: "Up Coming")
+            headerView.delegate = viewController
             return headerView
         default:
             return UIView()

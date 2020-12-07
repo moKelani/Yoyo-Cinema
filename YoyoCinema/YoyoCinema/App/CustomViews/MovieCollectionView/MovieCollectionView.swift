@@ -28,6 +28,8 @@ class MovieCollectionView: UIView {
     private lazy var nowPlayingCollectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.clipsToBounds = true
+        collectionView.showsVerticalScrollIndicator = false
         collectionView.register(BaseCell.self, forCellWithReuseIdentifier: BaseCell.identifier)
         collectionView.backgroundColor = .clear
         return collectionView
@@ -68,8 +70,17 @@ class MovieCollectionView: UIView {
 
 }
 extension MovieCollectionView: NowPlayingViewModelOutput {
-    func updateData(itemsForCollection: [HomeCollectionViewType]) {
-        nowPlayingDataSource = NowPlayingDataSource(itemsForCollection: itemsForCollection)
+
+    func gotoMovieDetails(movie: Movie) {
+        let movieDetailsVC = MovieDetailsBuilder.viewController(movie: movie)
+        findViewController()?.navigationController?.pushViewController(movieDetailsVC, animated: true)
+    }
+    
+    func updateData(itemsForCollection: [ItemCollectionViewCellType]) {
+        if let viewModel = nowPlayingViewModelInput {
+            nowPlayingDataSource = NowPlayingDataSource(itemsForCollection: itemsForCollection, viewModel: viewModel)
+        }
+        
 
         DispatchQueue.main.async {
             self.nowPlayingCollectionView.delegate = self.nowPlayingDataSource
@@ -78,3 +89,4 @@ extension MovieCollectionView: NowPlayingViewModelOutput {
         }
     }
 }
+

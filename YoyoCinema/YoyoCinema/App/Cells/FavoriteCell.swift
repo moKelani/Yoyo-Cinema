@@ -31,7 +31,6 @@ class FavoriteCell: BaseCell {
 
     override func configCell(movie: Movie) {
         super.configCell(movie: movie)
-
         setupConstraints()
     }
 

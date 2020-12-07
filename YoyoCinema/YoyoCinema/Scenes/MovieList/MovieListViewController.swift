@@ -117,7 +117,6 @@ class MovieListViewController: UIViewController {
 
             searchObservation = NotificationCenter.default.addObserver(forName: Notifications.searchTapped.name, object: nil, queue: nil) { result in
                 if let searchText = result.object as? String {
-                    self.movieCollectionViewDataSource = nil
                     self.collectionView.restore()
                     viewModel.searchList(query: searchText)
                 }
@@ -160,6 +159,12 @@ class MovieListViewController: UIViewController {
 }
 // MARK: - setup
 extension MovieListViewController: MovieListViewModelOutput {
+    
+    func gotoMovieDetails(movie: Movie) {
+        let movieDetailsVC = MovieDetailsBuilder.viewController(movie: movie)
+        navigationController?.pushViewController(movieDetailsVC, animated: true)
+    }
+    
     func updateData(itemsForCollection: [ItemCollectionViewCellType]) {
         if let viewModel = movieListViewModelInput {
           movieCollectionViewDataSource = MovieCollectionViewDataSource(itemsForCollection: itemsForCollection, viewModel: viewModel)

@@ -44,7 +44,6 @@
 		461B8A1A257ADF88000E19F9 /* UITableView+ReusableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 461B8A19257ADF88000E19F9 /* UITableView+ReusableCell.swift */; };
 		461B8A1C257AF2C8000E19F9 /* MovieTableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 461B8A1B257AF2C8000E19F9 /* MovieTableViewHeader.swift */; };
 		461B8A20257B9C61000E19F9 /* UIViewController+NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 461B8A1F257B9C61000E19F9 /* UIViewController+NavigationBar.swift */; };
-		461B8A22257BA276000E19F9 /* ParentViewController+ChildView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 461B8A21257BA276000E19F9 /* ParentViewController+ChildView.swift */; };
 		461B8A25257BAD7D000E19F9 /* MovieDetailsBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 461B8A24257BAD7D000E19F9 /* MovieDetailsBuilder.swift */; };
 		461B8A27257BADA5000E19F9 /* MovieDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 461B8A26257BADA5000E19F9 /* MovieDetailsViewController.swift */; };
 		461B8A29257BADBB000E19F9 /* MovieDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 461B8A28257BADBB000E19F9 /* MovieDetailsViewModel.swift */; };
@@ -57,6 +56,9 @@
 		461B8A39257C74BC000E19F9 /* UserDefaultsKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 461B8A38257C74BC000E19F9 /* UserDefaultsKey.swift */; };
 		461B8A3B257C8FA9000E19F9 /* FavoriteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 461B8A3A257C8FA9000E19F9 /* FavoriteCell.swift */; };
 		461B8A41257CE009000E19F9 /* ServiceAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 461B8A40257CE009000E19F9 /* ServiceAPIManager.swift */; };
+		461B8A43257DA5F1000E19F9 /* ItemsCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 461B8A42257DA5F1000E19F9 /* ItemsCollection.swift */; };
+		461B8A45257DAC70000E19F9 /* UIView+UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 461B8A44257DAC70000E19F9 /* UIView+UIViewController.swift */; };
+		461B8A47257DB2E1000E19F9 /* BaseMovieViewModelOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 461B8A46257DB2E1000E19F9 /* BaseMovieViewModelOutput.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -98,7 +100,6 @@
 		461B8A19257ADF88000E19F9 /* UITableView+ReusableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+ReusableCell.swift"; sourceTree = "<group>"; };
 		461B8A1B257AF2C8000E19F9 /* MovieTableViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTableViewHeader.swift; sourceTree = "<group>"; };
 		461B8A1F257B9C61000E19F9 /* UIViewController+NavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+NavigationBar.swift"; sourceTree = "<group>"; };
-		461B8A21257BA276000E19F9 /* ParentViewController+ChildView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ParentViewController+ChildView.swift"; sourceTree = "<group>"; };
 		461B8A24257BAD7D000E19F9 /* MovieDetailsBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsBuilder.swift; sourceTree = "<group>"; };
 		461B8A26257BADA5000E19F9 /* MovieDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsViewController.swift; sourceTree = "<group>"; };
 		461B8A28257BADBB000E19F9 /* MovieDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsViewModel.swift; sourceTree = "<group>"; };
@@ -111,6 +112,9 @@
 		461B8A38257C74BC000E19F9 /* UserDefaultsKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKey.swift; sourceTree = "<group>"; };
 		461B8A3A257C8FA9000E19F9 /* FavoriteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCell.swift; sourceTree = "<group>"; };
 		461B8A40257CE009000E19F9 /* ServiceAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceAPIManager.swift; sourceTree = "<group>"; };
+		461B8A42257DA5F1000E19F9 /* ItemsCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsCollection.swift; sourceTree = "<group>"; };
+		461B8A44257DAC70000E19F9 /* UIView+UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+UIViewController.swift"; sourceTree = "<group>"; };
+		461B8A46257DB2E1000E19F9 /* BaseMovieViewModelOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseMovieViewModelOutput.swift; sourceTree = "<group>"; };
 		B1B73685A5314B1635A90FA7 /* Pods_YoyoCinema.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YoyoCinema.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D89EA0E7BA4443DB35E3A543 /* Pods-YoyoCinema.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YoyoCinema.release.xcconfig"; path = "Target Support Files/Pods-YoyoCinema/Pods-YoyoCinema.release.xcconfig"; sourceTree = "<group>"; };
 		FECEB6C715BC172E195C72E1 /* Pods-YoyoCinema.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YoyoCinema.debug.xcconfig"; path = "Target Support Files/Pods-YoyoCinema/Pods-YoyoCinema.debug.xcconfig"; sourceTree = "<group>"; };
@@ -181,6 +185,8 @@
 			children = (
 				461B89C4257867ED000E19F9 /* CellReusable.swift */,
 				461B89C625786811000E19F9 /* BaseViewModelOutput.swift */,
+				461B8A42257DA5F1000E19F9 /* ItemsCollection.swift */,
+				461B8A46257DB2E1000E19F9 /* BaseMovieViewModelOutput.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -195,8 +201,8 @@
 				461B89D425788757000E19F9 /* UICollectionView+EmptyState.swift */,
 				461B8A19257ADF88000E19F9 /* UITableView+ReusableCell.swift */,
 				461B8A1F257B9C61000E19F9 /* UIViewController+NavigationBar.swift */,
-				461B8A21257BA276000E19F9 /* ParentViewController+ChildView.swift */,
 				461B8A34257C6B80000E19F9 /* UIView+Indicator.swift */,
+				461B8A44257DAC70000E19F9 /* UIView+UIViewController.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -519,8 +525,9 @@
 				461B89C5257867ED000E19F9 /* CellReusable.swift in Sources */,
 				461B89DE25789256000E19F9 /* MovieCollectionViewDataSource.swift in Sources */,
 				461B8A18257ADDDF000E19F9 /* BaseTableViewCell.swift in Sources */,
+				461B8A45257DAC70000E19F9 /* UIView+UIViewController.swift in Sources */,
+				461B8A47257DB2E1000E19F9 /* BaseMovieViewModelOutput.swift in Sources */,
 				461B8A25257BAD7D000E19F9 /* MovieDetailsBuilder.swift in Sources */,
-				461B8A22257BA276000E19F9 /* ParentViewController+ChildView.swift in Sources */,
 				461B89B525785A46000E19F9 /* MovieListViewController.swift in Sources */,
 				461B89FD257A61A5000E19F9 /* FavoriteListBuilder.swift in Sources */,
 				461B8A07257A6659000E19F9 /* SearchViewModel.swift in Sources */,
@@ -539,6 +546,7 @@
 				461B8A1A257ADF88000E19F9 /* UITableView+ReusableCell.swift in Sources */,
 				461B89E7257A38D0000E19F9 /* YoyoTabBarBuilder.swift in Sources */,
 				461B8A12257AB471000E19F9 /* MovieCollectionView.swift in Sources */,
+				461B8A43257DA5F1000E19F9 /* ItemsCollection.swift in Sources */,
 				461B89E0257892E9000E19F9 /* Movie.swift in Sources */,
 				461B89E9257A394F000E19F9 /* YoyoTabBarController.swift in Sources */,
 			);

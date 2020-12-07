@@ -32,7 +32,6 @@ extension Endpoint {
             )
         }
 
-        print("url:\(url)")
         return url
     }
 }

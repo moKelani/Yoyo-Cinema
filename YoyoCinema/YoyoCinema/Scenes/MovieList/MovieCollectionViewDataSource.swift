@@ -47,6 +47,16 @@ class MovieCollectionViewDataSource: NSObject, UICollectionViewDelegate, UIColle
         case .cellItem(let movie):
             let cell: MovieCell? = collectionView.dequeueReusableCell(for: indexPath)
             cell?.configCell(movie: movie)
+            if let viewModel = movieListViewModelInput as? MovieListViewModel {
+               cell?.delegate = viewModel
+            }
+            if let viewModel = discoverListViewModelInput as? DiscoverListViewModel {
+               cell?.delegate = viewModel
+            }
+            if let viewModel = searchListViewModelInput as? SearchListViewModel {
+               cell?.delegate = viewModel
+            }
+            
             return cell ?? UICollectionViewCell()
         }
     }

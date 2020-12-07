@@ -7,14 +7,21 @@
 //
 
 import UIKit
+import Kingfisher
+
+protocol MovieCellDelegate: class {
+    func cellTapped(movie: Movie)
+}
 
 class BaseCell: UICollectionViewCell, CellReusable {
 
     var movie: Movie?
 
+    weak var delegate:MovieCellDelegate?
+    
     lazy var thumbnailImageView: UIImageView = {
-        let imageView = UIImageView(image: UIImage(named: "logo"))
-        imageView.contentMode = .scaleAspectFill
+        let imageView = UIImageView(image: UIImage(named: "image_placeholder_icon"))
+        imageView.contentMode = .scaleAspectFit
         imageView.isUserInteractionEnabled = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
@@ -40,6 +47,7 @@ class BaseCell: UICollectionViewCell, CellReusable {
 
     override func layoutSubviews() {
         super.layoutSubviews()
+        thumbnailImageView.contentMode = .scaleAspectFill
         thumbnailImageView.layer.cornerRadius = 10.0
         thumbnailImageView.layer.masksToBounds = true
 
@@ -48,15 +56,14 @@ class BaseCell: UICollectionViewCell, CellReusable {
     @objc
     func imageTapped(_ gestureRecognizer: UITapGestureRecognizer) {
         if let movie = movie {
-            let movieDetailsVC = MovieDetailsBuilder.viewController(movie: movie)
-            self.parentViewController?.navigationController?.pushViewController(movieDetailsVC, animated: true)
+            delegate?.cellTapped(movie: movie)
         }
     }
 
     func configCell(movie: Movie) {
         self.movie = movie
 
-        if let path = movie.poster_path, let url = URL(string: "https://image.tmdb.org/t/p/w440_and_h660_face" + path) {
+        if let path = movie.poster_path, let url = URL(string: GlobalVariables.posterBaseURL + path) {
             thumbnailImageView.kf.setImage(with: url)
         }
 

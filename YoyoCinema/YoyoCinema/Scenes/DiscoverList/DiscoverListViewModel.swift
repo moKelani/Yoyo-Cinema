@@ -55,7 +55,6 @@ extension DiscoverListViewModel {
                self.viewModelOutput?.hideLoading()
                switch result {
                case .success(let movieList):
-                 print(movieList)
                  self.viewModelOutput?.updateData(itemsForCollection: self.createItemsForTable(movieList: movieList.results))
                  self.totalResults = movieList.total_results
 
@@ -75,7 +74,6 @@ extension DiscoverListViewModel {
                self.viewModelOutput?.hideLoading()
                switch result {
                case .success(let movieList):
-                 print(movieList)
                  self.viewModelOutput?.updateCollectionView(itemsForCollection: self.createItemsForTable(movieList: movieList.results))
 
                case .failure(let error):
@@ -91,4 +89,10 @@ extension DiscoverListViewModel {
            }
            return itemsForTable
        }
+}
+extension DiscoverListViewModel: MovieCellDelegate {
+    func cellTapped(movie: Movie) {
+        viewModelOutput?.gotoMovieDetails(movie: movie)
+    }
+
 }

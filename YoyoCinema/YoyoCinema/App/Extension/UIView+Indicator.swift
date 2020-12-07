@@ -20,10 +20,7 @@ extension UIView {
             // Create the activity indicator
             let loadingIndicatorView: UIActivityIndicatorView = {
                 let style: UIActivityIndicatorView.Style = {
-                    if #available(iOS 13, *) {
-                        return .medium
-                    }
-                    return .white
+                    return .medium
                 }()
 
                 let indicatorView = UIActivityIndicatorView(style: style)
@@ -39,7 +36,7 @@ extension UIView {
 
             loadingIndicatorView.startAnimating()
             self.addSubview(loadingIndicatorView)
-            loadingIndicatorView.layer.zPosition = .greatestFiniteMagnitude
+            loadingIndicatorView.layer.zPosition = CGFloat(Float.greatestFiniteMagnitude)
             loadingIndicatorView.layer.cornerRadius = 5
 
             NSLayoutConstraint.activate([

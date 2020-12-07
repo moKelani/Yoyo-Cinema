@@ -10,5 +10,4 @@ import Foundation
 
 enum UserDefaultsKey: String {
     case favoriteList
-
 }

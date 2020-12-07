@@ -13,8 +13,8 @@ protocol NowPlayingViewModelInput: AnyObject {
 
 }
 
-protocol NowPlayingViewModelOutput: AnyObject {
-    func updateData(itemsForCollection: [HomeCollectionViewType])
+protocol NowPlayingViewModelOutput: BaseMovieViewModelOutput {
+    func gotoMovieDetails(movie: Movie)
 }
 
 class NowPlayingViewModel: NowPlayingViewModelInput {
@@ -43,8 +43,7 @@ extension NowPlayingViewModel {
             guard let self = self else {return}
             switch result {
             case .success(let movieList):
-              print(movieList)
-              self.viewModelOutput?.updateData(itemsForCollection: self.createItemsForCollection(movieList: movieList.results))
+              self.viewModelOutput?.updateData(itemsForCollection: ItemsCollection.createItemsForCollection(movieList: movieList.results))
 
             case .failure(let error):
                 print(error)
@@ -53,10 +52,12 @@ extension NowPlayingViewModel {
 
     }
 
-    private func createItemsForCollection(movieList: [Movie]) -> [HomeCollectionViewType] {
-        let itemsForTable: [HomeCollectionViewType] = movieList.map { movie -> HomeCollectionViewType in
-            return HomeCollectionViewType.cellItem( item: .cellItem(movie: movie))
-        }
-        return itemsForTable
+}
+
+extension NowPlayingViewModel: MovieCellDelegate {
+    func cellTapped(movie: Movie) {
+        viewModelOutput?.gotoMovieDetails(movie: movie)
     }
+    
+    
 }

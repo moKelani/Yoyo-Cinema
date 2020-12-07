@@ -1,15 +1,12 @@
 {
   "images" : [
     {
-      "filename" : "selected_Favorite_icon.pdf",
+      "filename" : "image_placeholder_icon.pdf",
       "idiom" : "universal"
     }
   ],
   "info" : {
     "author" : "xcode",
     "version" : 1
-  },
-  "properties" : {
-    "template-rendering-intent" : "template"
   }
 }

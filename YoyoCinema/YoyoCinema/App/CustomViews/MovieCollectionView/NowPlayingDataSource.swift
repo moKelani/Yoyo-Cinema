@@ -8,17 +8,16 @@
 
 import UIKit
 
-enum HomeCollectionViewType {
-    case cellItem(item: ItemCollectionViewCellType)
-    case moreItem
-}
+
 
 class NowPlayingDataSource: NSObject, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
-    var itemsForCollection: [HomeCollectionViewType]
+    var itemsForCollection: [ItemCollectionViewCellType]
+    var nowPlayingViewModelInput: NowPlayingViewModelInput?
 
-    init(itemsForCollection: [HomeCollectionViewType]) {
+    init(itemsForCollection: [ItemCollectionViewCellType], viewModel: NowPlayingViewModelInput) {
         self.itemsForCollection = itemsForCollection
+        nowPlayingViewModelInput = viewModel
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -29,10 +28,11 @@ class NowPlayingDataSource: NSObject, UICollectionViewDelegate, UICollectionView
        let item = itemsForCollection[indexPath.row]
        let cell: BaseCell? = collectionView.dequeueReusableCell(for: indexPath)
         switch item {
-        case .cellItem(.cellItem(movie: let movie)):
+        case .cellItem(movie: let movie):
             cell?.configCell(movie: movie)
-            return cell ?? UICollectionViewCell()
-        case .moreItem:
+            if let viewModel = nowPlayingViewModelInput as? NowPlayingViewModel {
+               cell?.delegate = viewModel
+            }
             return cell ?? UICollectionViewCell()
         }
     }
@@ -44,7 +44,7 @@ class NowPlayingDataSource: NSObject, UICollectionViewDelegate, UICollectionView
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 5, left: 20, bottom: 20, right: 5)
+        return UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
     }
 
 }

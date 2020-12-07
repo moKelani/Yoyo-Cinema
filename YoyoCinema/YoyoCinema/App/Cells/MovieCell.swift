@@ -7,7 +7,9 @@
 //
 
 import UIKit
-import Kingfisher
+
+
+
 
 class MovieCell: BaseCell {
 
@@ -61,11 +63,9 @@ class MovieCell: BaseCell {
     override func setupConstraints() {
         
         NSLayoutConstraint.activate([
-            thumbnailImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            thumbnailImageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             thumbnailImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            thumbnailImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            thumbnailImageView.heightAnchor.constraint(equalToConstant: 210),
-            thumbnailImageView.heightAnchor.constraint(equalToConstant: 140)
+            thumbnailImageView.topAnchor.constraint(equalTo: contentView.topAnchor)
             
         ])
         

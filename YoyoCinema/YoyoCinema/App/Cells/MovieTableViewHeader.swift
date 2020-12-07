@@ -8,10 +8,16 @@
 
 import UIKit
 
+protocol MovieHeaderDelegate: class {
+    func viewAllTapped(listType: Int)
+}
+
 class MovieTableViewHeader: UITableViewHeaderFooterView {
 
     static let identifier = "MovieTableViewHeader"
-
+    
+    weak var delegate: MovieHeaderDelegate?
+    
     lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -57,15 +63,14 @@ class MovieTableViewHeader: UITableViewHeaderFooterView {
         ])
     }
     var listType = 0
-    @objc func ontappedViewAllButton(sender: UIButton) {
-       //NotificationCenter.default.post(name: notificationName, object: nil)
-        let movieList = MovieListBuilder.viewController(listType: listType)
-        self.parentViewController?.navigationController?.pushViewController(movieList, animated: true)
+    @objc func onTappedViewAllButton(sender: UIButton) {
+        delegate?.viewAllTapped(listType: listType)
+        
     }
 
     func configCell(title: String) {
         setupConstraints()
-        viewAllbutton.addTarget(self, action: #selector(ontappedViewAllButton), for: .touchUpInside)
+        viewAllbutton.addTarget(self, action: #selector(onTappedViewAllButton), for: .touchUpInside)
         titleLabel.text = title
         if title == "Up Coming" {
             listType = 1

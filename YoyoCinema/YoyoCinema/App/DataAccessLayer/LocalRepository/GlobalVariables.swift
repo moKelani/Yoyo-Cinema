@@ -29,5 +29,7 @@ struct GlobalVariables {
         }
     }
 
-    static var baseURL: String?
+    static var posterBaseURL: String = "https://image.tmdb.org/t/p/w440_and_h660_face"
+    
+    static var backDropBaseURL: String = "https://image.tmdb.org/t/p/w1280/"
 }

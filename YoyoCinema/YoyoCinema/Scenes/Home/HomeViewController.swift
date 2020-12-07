@@ -48,7 +48,7 @@ class HomeViewController: UIViewController {
         title = "Yoyo Cimena"
         navigationController?.navigationBar.prefersLargeTitles = true
         // Do any additional setup after loading the view.
-        homeDataSource = HomeDataSource()
+        homeDataSource = HomeDataSource(viewController: self)
         tableView.delegate = homeDataSource
         tableView.dataSource = homeDataSource
         tableView.reloadData()
@@ -88,3 +88,14 @@ extension HomeViewController: BaseViewModelOutput {
     }
 
 }
+extension HomeViewController: MovieHeaderDelegate {
+    func viewAllTapped(listType: Int) {
+        let movieList = MovieListBuilder.viewController(listType: listType)
+        navigationController?.pushViewController(movieList, animated: true)
+    }
+    
+    
+}
+
+
+

@@ -63,7 +63,7 @@ class FavoriteListViewController: UIViewController {
             collectionView.reloadData()
         } else {
             collectionView.restore()
-            favoriteDataSource = FavoriteListDataSource()
+            favoriteDataSource = FavoriteListDataSource(viewController: self)
             collectionView.delegate = favoriteDataSource
             collectionView.dataSource = favoriteDataSource
             collectionView.reloadData()
@@ -97,4 +97,14 @@ extension FavoriteListViewController: BaseViewModelOutput {
         }
     }
 
+}
+extension FavoriteListViewController: MovieCellDelegate {
+    func cellTapped(movie: Movie) {
+        let movieDetailsVC = MovieDetailsBuilder.viewController(movie: movie)
+        navigationController?.pushViewController(movieDetailsVC, animated: true)
+    }
+    
+    
+    
+    
 }

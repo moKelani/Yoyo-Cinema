@@ -13,10 +13,9 @@ protocol MovieListViewModelInput: AnyObject {
     func paginateMore(_ indexPath: IndexPath, dataSourceCount: Int)
 }
 
-protocol MovieListViewModelOutput: AnyObject, BaseViewModelOutput {
-    func updateData(itemsForCollection: [ItemCollectionViewCellType])
+protocol MovieListViewModelOutput: BaseMovieViewModelOutput, BaseViewModelOutput {
     func updateCollectionView(itemsForCollection: [ItemCollectionViewCellType])
-    func emptyState(emptyPlaceHolderType: EmptyPlaceHolderType)
+    func gotoMovieDetails(movie: Movie)
 }
 
 class MovieListViewModel: MovieListViewModelInput {
@@ -63,8 +62,7 @@ extension MovieListViewModel {
             self.viewModelOutput?.hideLoading()
             switch result {
             case .success(let movieList):
-              print(movieList)
-              self.viewModelOutput?.updateData(itemsForCollection: self.createItemsForTable(movieList: movieList.results))
+              self.viewModelOutput?.updateData(itemsForCollection: ItemsCollection.createItemsForCollection(movieList: movieList.results))
               self.totalResults = movieList.total_results
 
             case .failure(let error):
@@ -83,8 +81,7 @@ extension MovieListViewModel {
             self.viewModelOutput?.hideLoading()
             switch result {
             case .success(let movieList):
-              print(movieList)
-              self.viewModelOutput?.updateCollectionView(itemsForCollection: self.createItemsForTable(movieList: movieList.results))
+              self.viewModelOutput?.updateCollectionView(itemsForCollection: ItemsCollection.createItemsForCollection(movieList: movieList.results))
 
             case .failure(let error):
                 print(error)
@@ -93,10 +90,12 @@ extension MovieListViewModel {
         }
     }
 
-    private func createItemsForTable(movieList: [Movie]) -> [ItemCollectionViewCellType] {
-        let itemsForTable: [ItemCollectionViewCellType] = movieList.map { movie -> ItemCollectionViewCellType in
-            return ItemCollectionViewCellType.cellItem(movie: movie)
-        }
-        return itemsForTable
+    
+}
+
+extension MovieListViewModel: MovieCellDelegate {
+    func cellTapped(movie: Movie) {
+        viewModelOutput?.gotoMovieDetails(movie: movie)
     }
+
 }

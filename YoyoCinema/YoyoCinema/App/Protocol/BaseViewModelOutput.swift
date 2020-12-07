@@ -14,6 +14,7 @@ protocol BaseViewModelOutput {
     func emptyState(emptyPlaceHolderType: EmptyPlaceHolderType)
 }
 
+
 extension BaseViewModelOutput where Self: UIViewController {
     func showLoading() {
         DispatchQueue.main.async {
