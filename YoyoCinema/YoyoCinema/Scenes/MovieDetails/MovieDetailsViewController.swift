@@ -191,17 +191,17 @@ class MovieDetailsViewController: UIViewController {
 extension MovieDetailsViewController: MovieDetailsViewModelOutput {
     func updateData(movie: Movie) {
 
-        if let path = movie.backdrop_path, let url = URL(string: GlobalVariables.backDropBaseURL + path) {
+        if let path = movie.backdropPath, let url = URL(string: GlobalVariables.backDropBaseURL + path) {
             bannerImageView.kf.setImage(with: url)
         }
 
-        if let path = movie.poster_path, let url = URL(string: GlobalVariables.posterBaseURL + path) {
+        if let path = movie.posterPath, let url = URL(string: GlobalVariables.posterBaseURL + path) {
             movieImageView.kf.setImage(with: url)
         }
 
         movieTitleLabel.text = movie.title ?? ""
-        movieReleaseDateLabel.text = movie.release_date ?? ""
-        movieRateLabel.text = "\(movie.vote_average ?? 0.0)"
+        movieReleaseDateLabel.text = movie.releaseDate ?? ""
+        movieRateLabel.text = "\(movie.voteAverage ?? 0.0)"
         movieOverViewLabel.text = movie.overview ?? ""
         updateRighBarButton(isFavourite: false)
         for value in GlobalVariables.FavoriteList where movie.id == value.id {

@@ -11,21 +11,42 @@ import Foundation
 struct MovieList: Codable {
     let page: Int
     let results: [Movie]
-    let total_pages: Int
-    let total_results: Int
+    let totalPages: Int
+    let totalResults: Int
+    
+    enum CodingKeys: String, CodingKey {
+        case page
+        case results
+        case totalPages = "total_pages"
+        case totalResults = "total_results"
+    }
 }
 
 struct Movie: Codable {
-    let poster_path: String?
-    let backdrop_path: String?
+    let posterPath: String?
+    let backdropPath: String?
     let overview: String?
-    let release_date: String?
-    let genre_ids: [Int]?
+    let releaseDate: String?
     let id: Int?
-    let original_title: String?
-    let original_language: String?
+    let originalTitle: String?
+    let originalLanguage: String?
     let title: String?
-    let vote_count: Int?
-    let vote_average: Float?
+    let voteCount: Int?
+    let voteAverage: Float?
     var isFavorite: Bool? = false
+    
+    enum CodingKeys: String, CodingKey {
+        case posterPath = "poster_path"
+        case backdropPath = "backdrop_path"
+        case overview
+        case releaseDate = "release_date"
+        case id
+        case originalTitle = "original_title"
+        case originalLanguage = "original_language"
+        case title
+        case voteCount = "vote_count"
+        case voteAverage = "vote_average"
+        case isFavorite
+        
+    }
 }

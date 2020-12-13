@@ -61,7 +61,7 @@ extension SearchListViewModel {
                switch result {
                case .success(let movieList):
                  self.viewModelOutput?.updateData(itemsForCollection: self.createItemsForTable(movieList: movieList.results))
-                 self.totalResults = movieList.total_results
+                 self.totalResults = movieList.totalResults
 
                case .failure(let error):
                    print(error)

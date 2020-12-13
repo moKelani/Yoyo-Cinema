@@ -63,7 +63,7 @@ extension MovieListViewModel {
             switch result {
             case .success(let movieList):
               self.viewModelOutput?.updateData(itemsForCollection: ItemsCollection.createItemsForCollection(movieList: movieList.results))
-              self.totalResults = movieList.total_results
+              self.totalResults = movieList.totalResults
 
             case .failure(let error):
                 print(error)

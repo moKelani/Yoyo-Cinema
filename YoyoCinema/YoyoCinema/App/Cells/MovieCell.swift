@@ -93,11 +93,11 @@ class MovieCell: BaseCell {
         super.configCell(movie: movie)
         self.movie = movie
 
-        if let vote = movie.vote_average {
+        if let vote = movie.voteAverage {
            movieRateLabel.text = "\(vote)%"
         }
 
-        movieReleaseDateLabel.text = movie.release_date
+        movieReleaseDateLabel.text = movie.releaseDate
         movieTitleLabel.text = movie.title
     }
 

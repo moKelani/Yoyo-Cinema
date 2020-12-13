@@ -63,7 +63,7 @@ class BaseCell: UICollectionViewCell, CellReusable {
     func configCell(movie: Movie) {
         self.movie = movie
 
-        if let path = movie.poster_path, let url = URL(string: GlobalVariables.posterBaseURL + path) {
+        if let path = movie.posterPath, let url = URL(string: GlobalVariables.posterBaseURL + path) {
             thumbnailImageView.kf.setImage(with: url)
         }
 
