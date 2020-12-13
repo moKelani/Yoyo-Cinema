@@ -8,29 +8,31 @@
 
 import Foundation
 
-protocol NetworkSession {
-    func loadData(_ endpoint: Endpoint,
-                  completionHandler: @escaping (Data?, Error?) -> Void)
+protocol APIServiceProtocol {
+    func loadData(from url: URL, completionHandler: @escaping (Data?, Error?) -> Void)
 }
 
-extension URLSession: NetworkSession {
-    func loadData(_ endpoint: Endpoint,
+extension URLSession: APIServiceProtocol {
+    func loadData(from url: URL,
                   completionHandler: @escaping (Data?, Error?) -> Void) {
-        let task = dataTask(with: endpoint.url) { (data, _, error) in
+        let task = dataTask(with: url) { (data, _, error) in
             completionHandler(data, error)
         }
         task.resume()
     }
 }
 
-class MovieServiceAPI {
-    private let session: NetworkSession
-    init(session: NetworkSession = URLSession.shared) {
+class APIService {
+    
+    private let session: APIServiceProtocol
+    
+    init(session: APIServiceProtocol = URLSession.shared) {
         self.session = session
     }
-    func loadData<T: Decodable>(_ endpoint: Endpoint,
-                                completion: @escaping (Result<T, APIServiceError>) -> Void) {
-        session.loadData(endpoint) { data, error in
+    
+    func loadData<T: Decodable>(from url: URL,
+                                completion: @escaping (Result<T, APIError>) -> Void) {
+        session.loadData(from: url) { data, _ in
             do {
                 guard let data = data else {
                     completion(.failure(.noResults))
@@ -48,7 +50,7 @@ class MovieServiceAPI {
 
 }
 
-public enum APIServiceError: Error {
+public enum APIError: Error, Equatable {
     case failedConnection
     case idError
     case noResults

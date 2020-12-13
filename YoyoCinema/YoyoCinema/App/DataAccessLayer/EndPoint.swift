@@ -10,11 +10,11 @@ import Foundation
 
 struct Endpoint {
     var path: String
-    var queryItems: [URLQueryItem] = [URLQueryItem(name: "api_key", value: "1f54bd990f1cdfb230adb312546d765d")]
+    var queryItems: [URLQueryItem]
 
-    init(path: String, queryItems: [URLQueryItem] = []) {
+    init(path: String, queryItems: [URLQueryItem]) {
         self.path = path
-        self.queryItems.append(contentsOf: queryItems)
+        self.queryItems = queryItems
     }
 }
 
@@ -38,31 +38,36 @@ extension Endpoint {
 
 extension Endpoint {
 
-    static func discoverList(sortby: String? = nil, withPage page: Int) -> Self {
+    static func getKeyQueryItem() -> URLQueryItem {
+       return URLQueryItem(name: "api_key", value: "1f54bd990f1cdfb230adb312546d765d")
+    }
+    
+    static func discoverList(sortby: String? = nil, withPage page: Int) -> URL {
         if let sort = sortby {
             return Endpoint(path: "/discover/movie",
-            queryItems: [URLQueryItem(name: "page", value: String(page)), URLQueryItem(name: "sort_by", value: String(sort))])
+                queryItems: [Endpoint.getKeyQueryItem(), URLQueryItem(name: "page", value: String(page)), URLQueryItem(name: "sort_by", value: String(sort))]).url
         } else {
            return Endpoint(path: "/discover/movie",
-            queryItems: [URLQueryItem(name: "page", value: String(page))])
+            queryItems: [Endpoint.getKeyQueryItem(), URLQueryItem(name: "page", value: String(page))]).url
         }
 
     }
 
-    static func movieList(path: String, withPage page: Int) -> Self {
+    static func movieList(path: String, withPage page: Int) -> URL {
         Endpoint(path: "/movie/\(path)",
-        queryItems: [URLQueryItem(name: "page", value: String(page))])
+            queryItems: [Endpoint.getKeyQueryItem(), URLQueryItem(name: "page", value: String(page))]).url
     }
 
-    static func movie(withID id: Int) -> Self {
-        Endpoint(path: "/movie/\(id)")
+    static func movie(withID id: Int) -> URL {
+        Endpoint(path: "/movie/\(id)",
+            queryItems: [Endpoint.getKeyQueryItem()]).url
     }
 
     static func search(for query: String,
-                       withPage page: Int) -> Self {
+                       withPage page: Int) -> URL {
         Endpoint(
             path: "/search/movie",
-            queryItems: [URLQueryItem(name: "query", value: String(query)), URLQueryItem(name: "page", value: String(page))]
-        )
+            queryItems: [Endpoint.getKeyQueryItem() ,URLQueryItem(name: "query", value: String(query)), URLQueryItem(name: "page", value: String(page))]
+        ).url
     }
 }

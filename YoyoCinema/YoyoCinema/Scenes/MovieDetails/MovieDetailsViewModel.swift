@@ -35,11 +35,11 @@ class MovieDetailsViewModel: MovieDetailsViewModelInput {
         movie.isFavorite = isFavorite
         if isFavorite {
             GlobalVariables.FavoriteList.append(movie)
-
+            
         } else {
-                for (index, value) in GlobalVariables.FavoriteList.enumerated() where movie.id == value.id {
-                    GlobalVariables.FavoriteList.remove(at: index)
-                }
+            for (index, value) in GlobalVariables.FavoriteList.enumerated() where movie.id == value.id {
+                GlobalVariables.FavoriteList.remove(at: index)
+            }
         }
     }
 

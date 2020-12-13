@@ -2,7 +2,7 @@
 //  DataLoader.swift
 //  YoyoCinemaTests
 //
-//  Created by Mohamed Kelany on 12/8/20.
+//  Created by Mohamed Kelany on 12/13/20.
 //  Copyright © 2020 Mohamed Kelany. All rights reserved.
 //
 
@@ -11,7 +11,7 @@ import Foundation
 class DataLoader {
     static func getData() -> Data? {
         let testBundle = Bundle(for:  self)
-        guard let path = testBundle.path(forResource: "data", ofType: "json") else {
+        guard let path = testBundle.path(forResource: "stub", ofType: "json") else {
             return nil
         }
         do {
@@ -23,5 +23,3 @@ class DataLoader {
         }
     }
 }
-
-
