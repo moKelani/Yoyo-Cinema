@@ -53,6 +53,12 @@ class SortByViewController: UIViewController {
         tableView.reloadData()
         // Do any additional setup after loading the view.
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        tableView.delegate = nil
+        tableView.dataSource = nil
+    }
 
     // MARK: - AutoLayout
     private func updateConstraints() {

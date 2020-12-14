@@ -32,17 +32,22 @@ class BaseCell: UICollectionViewCell, CellReusable {
         fatalError("init(coder:) has not been implemented")
     }
 
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        thumbnailImageView.kf.cancelDownloadTask()
-        thumbnailImageView.image = nil
-    }
-
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupViews()
         let tap: UITapGestureRecognizer = .init(target: self, action: #selector(imageTapped(_:)))
         thumbnailImageView.addGestureRecognizer(tap)
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        thumbnailImageView.kf.cancelDownloadTask()
+        thumbnailImageView.image = nil
+        let constrainsts = thumbnailImageView.constraints
+        if constrainsts.count > 0 {
+            thumbnailImageView.removeConstraints(constrainsts)
+        }
+        
     }
 
     override func layoutSubviews() {
@@ -52,6 +57,8 @@ class BaseCell: UICollectionViewCell, CellReusable {
         thumbnailImageView.layer.masksToBounds = true
 
     }
+    
+    
 
     @objc
     func imageTapped(_ gestureRecognizer: UITapGestureRecognizer) {

@@ -30,6 +30,7 @@ class MovieListViewController: UIViewController {
     lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.register(MovieCell.self, forCellWithReuseIdentifier: MovieCell.identifier)
         collectionView.backgroundColor = .clear
         return collectionView
     }()
@@ -79,6 +80,7 @@ class MovieListViewController: UIViewController {
         if let observation = searchObservation {
             NotificationCenter.default.removeObserver(observation)
         }
+        movieCollectionViewDataSource = nil
     }
 
     // MARK: - View lifecycle
@@ -96,15 +98,23 @@ class MovieListViewController: UIViewController {
         title = "Movies"
         showDefaultNavigationBar()
 
-        collectionView.register(MovieCell.self, forCellWithReuseIdentifier: MovieCell.identifier)
+        
         if let type = listType {
+           self.collectionView.restore()
            movieListViewModelInput?.getMovieList(with: type)
         }
 
         if let viewModel = discoverListViewModelInput {
             rightNavBarItems(sortButton())
             title = "Discover"
+            self.collectionView.restore()
             viewModel.discoverList(sortby: "")
+            
+            observation = NotificationCenter.default.addObserver(forName: Notifications.sortByTapped.name, object: nil, queue: nil) { [weak self] result in
+                if let sort = result.object as? String {
+                    self?.discoverListViewModelInput?.discoverList(sortby: sort)
+                }
+            }
         }
 
         if let viewModel = searchListViewModelInput {
@@ -126,11 +136,12 @@ class MovieListViewController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        observation = NotificationCenter.default.addObserver(forName: Notifications.sortByTapped.name, object: nil, queue: nil) { [weak self] result in
-            if let sort = result.object as? String {
-                self?.discoverListViewModelInput?.discoverList(sortby: sort)
-            }
-        }
+        
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        movieCollectionViewDataSource = nil
     }
 
     // MARK: - Auto layout
@@ -167,13 +178,16 @@ extension MovieListViewController: MovieListViewModelOutput {
     
     func updateData(itemsForCollection: [ItemCollectionViewCellType]) {
         if let viewModel = movieListViewModelInput {
+            print("movieListViewModelInput", movieListViewModelInput)
           movieCollectionViewDataSource = MovieCollectionViewDataSource(itemsForCollection: itemsForCollection, viewModel: viewModel)
         }
         if let viewModel = discoverListViewModelInput {
+            print("discoverListViewModelInput", discoverListViewModelInput)
           movieCollectionViewDataSource = MovieCollectionViewDataSource(itemsForCollection: itemsForCollection, viewModel: viewModel)
         }
 
         if let viewModel = searchListViewModelInput {
+            print("searchListViewModelInput", searchListViewModelInput)
           movieCollectionViewDataSource = MovieCollectionViewDataSource(itemsForCollection: itemsForCollection, viewModel: viewModel)
         }
 
@@ -193,7 +207,6 @@ extension MovieListViewController: MovieListViewModelOutput {
 
     func emptyState(emptyPlaceHolderType: EmptyPlaceHolderType) {
         DispatchQueue.main.async {
-            self.movieCollectionViewDataSource = nil
             self.collectionView.restore()
             self.collectionView.setEmptyView(emptyPlaceHolderType: emptyPlaceHolderType)
         }

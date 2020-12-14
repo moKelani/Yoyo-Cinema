@@ -21,10 +21,10 @@ class FavoriteListDataSource: NSObject, UICollectionViewDelegate, UICollectionVi
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell: FavoriteCell? = collectionView.dequeueReusableCell(for: indexPath)
-        cell?.configCell(movie: GlobalVariables.FavoriteList[indexPath.row])
-        cell?.delegate = viewController
-        return cell ?? UICollectionViewCell()
+        let cell: FavoriteCell = collectionView.dequeueReusableCell(for: indexPath, cellType: FavoriteCell.self)
+        cell.configCell(movie: GlobalVariables.FavoriteList[indexPath.row])
+        cell.delegate = viewController
+        return cell
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

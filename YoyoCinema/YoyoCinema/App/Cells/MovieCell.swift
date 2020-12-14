@@ -41,6 +41,31 @@ class MovieCell: BaseCell {
         super.init(frame: frame)
         setupViews()
     }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        var constrainsts = thumbnailImageView.constraints
+        if constrainsts.count > 0 {
+            thumbnailImageView.removeConstraints(constrainsts)
+        }
+        
+        constrainsts = movieReleaseDateLabel.constraints
+        if constrainsts.count > 0 {
+            movieReleaseDateLabel.removeConstraints(constrainsts)
+        }
+        
+        constrainsts = movieRateLabel.constraints
+        if constrainsts.count > 0 {
+            movieRateLabel.removeConstraints(constrainsts)
+        }
+        
+        constrainsts = movieTitleLabel.constraints
+        if constrainsts.count > 0 {
+            movieTitleLabel.removeConstraints(constrainsts)
+        }
+        
+    }
 
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -88,6 +113,8 @@ class MovieCell: BaseCell {
             movieReleaseDateLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10)
         ])
     }
+    
+    
 
     override func configCell(movie: Movie) {
         super.configCell(movie: movie)

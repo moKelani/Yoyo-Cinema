@@ -7,7 +7,6 @@
 //
 
 import Foundation
-@testable import YoyoCinema
 
 // We create a partial mock by subclassing the original class
 class URLSessionDataTaskMock: URLSessionDataTask {
@@ -26,23 +25,19 @@ class URLSessionDataTaskMock: URLSessionDataTask {
 
 class URLSessionMock: URLSession {
     typealias CompletionHandler = (Data?, URLResponse?, Error?) -> Void
-
     // Properties that enable us to set exactly what data or error
     // we want our mocked URLSession to return for any request.
     var data: Data?
     var error: Error?
-
     override func dataTask(
         with url: URL,
         completionHandler: @escaping CompletionHandler
-    ) -> URLSessionDataTask {
+        ) -> URLSessionDataTask {
         let data = self.data
         let error = self.error
-
         return URLSessionDataTaskMock {
             completionHandler(data, nil, error)
         }
     }
 }
-
 

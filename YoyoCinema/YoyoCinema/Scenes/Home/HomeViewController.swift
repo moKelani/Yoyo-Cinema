@@ -32,6 +32,10 @@ class HomeViewController: UIViewController {
        required init?(coder: NSCoder) {
            fatalError("init(coder:) has not been implemented")
        }
+    
+    deinit {
+        homeDataSource = nil
+    }
 
     // MARK: - View lifecycle
 
@@ -81,7 +85,6 @@ class HomeViewController: UIViewController {
 extension HomeViewController: BaseViewModelOutput {
     func emptyState(emptyPlaceHolderType: EmptyPlaceHolderType) {
         DispatchQueue.main.async {
-            self.homeDataSource = nil
             self.tableView.restore()
             self.tableView.setEmptyView(emptyPlaceHolderType: emptyPlaceHolderType)
         }

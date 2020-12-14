@@ -24,14 +24,14 @@ class NowPlayingDataSource: NSObject, UICollectionViewDelegate, UICollectionView
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
        let item = itemsForCollection[indexPath.row]
-       let cell: BaseCell? = collectionView.dequeueReusableCell(for: indexPath)
+        let cell: BaseCell = collectionView.dequeueReusableCell(for: indexPath, cellType: BaseCell.self)
         switch item {
         case .cellItem(movie: let movie):
-            cell?.configCell(movie: movie)
+            cell.configCell(movie: movie)
             if let viewModel = nowPlayingViewModelInput as? NowPlayingViewModel {
-               cell?.delegate = viewModel
+               cell.delegate = viewModel
             }
-            return cell ?? UICollectionViewCell()
+            return cell
         }
     }
 
