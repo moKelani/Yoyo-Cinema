@@ -16,7 +16,7 @@ class SearchBarView: UIView {
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.placeholder = "search here..."
         textField.keyboardType = UIKeyboardType.default
-        textField.returnKeyType = UIReturnKeyType.done
+        textField.returnKeyType = UIReturnKeyType.search
         textField.autocorrectionType = UITextAutocorrectionType.no
         textField.font = UIFont.systemFont(ofSize: 13)
         textField.borderStyle = UITextField.BorderStyle.roundedRect
@@ -25,25 +25,6 @@ class SearchBarView: UIView {
         return textField
     }()
 
-    lazy var searchButton: UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Search", for: .normal)
-        button.setTitleColor(.black, for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 14)
-        button.addTarget(self, action: #selector(searchButtonTapped), for: .touchUpInside)
-        return button
-    }()
-
-    private var searchStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .horizontal
-         stackView.distribution = .fill
-        stackView.alignment = .fill
-        stackView.spacing = 8
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        return stackView
-    }()
     // MARK: - Initializers
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -55,28 +36,31 @@ class SearchBarView: UIView {
        }
 
     func setup() {
-        self.addSubview(searchStackView)
-        [searchTextField, searchButton].forEach {
-            searchStackView.addArrangedSubview($0)
-        }
+        self.addSubview(searchTextField)
+        searchTextField.delegate = self
         setConstraints()
     }
 
     // MARK: - AutoLayout
     private func setConstraints() {
         NSLayoutConstraint.activate([
-            searchStackView.topAnchor.constraint(equalTo: self.topAnchor, constant: 5),
-            searchStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
-            searchStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
-            searchStackView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -5)
+            searchTextField.topAnchor.constraint(equalTo: self.topAnchor, constant: 5),
+            searchTextField.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
+            searchTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
+            searchTextField.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -5)
         ])
     }
+}
 
-    @objc func searchButtonTapped() {
-        self.endEditing(true)
+extension SearchBarView: UITextFieldDelegate {
+    //UITextField delegate method
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
         if let searchText = searchTextField.text, !searchText.isEmpty {
-           NotificationCenter.default.post(name: Notifications.searchTapped.name, object: searchText)
+            NotificationCenter.default.post(name: Notifications.searchTapped.name, object: searchText)
+            self.endEditing(true)
+            return true
         }
+        return false
     }
-
 }
