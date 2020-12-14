@@ -73,6 +73,7 @@ class SearchBarView: UIView {
     }
 
     @objc func searchButtonTapped() {
+        self.endEditing(true)
         if let searchText = searchTextField.text, !searchText.isEmpty {
            NotificationCenter.default.post(name: Notifications.searchTapped.name, object: searchText)
         }
