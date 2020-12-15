@@ -55,12 +55,8 @@ class SearchBarView: UIView {
 extension SearchBarView: UITextFieldDelegate {
     //UITextField delegate method
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        
-        if let searchText = searchTextField.text, !searchText.isEmpty {
-            NotificationCenter.default.post(name: Notifications.searchTapped.name, object: searchText)
-            self.endEditing(true)
-            return true
-        }
-        return false
+        NotificationCenter.default.post(name: Notifications.searchTapped.name, object: searchTextField.text)
+        self.endEditing(true)
+        return true
     }
 }

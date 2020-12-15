@@ -125,10 +125,15 @@ class MovieListViewController: UIViewController {
             title = "Search"
             emptyState(emptyPlaceHolderType: .search)
 
-            searchObservation = NotificationCenter.default.addObserver(forName: Notifications.searchTapped.name, object: nil, queue: nil) { result in
-                if let searchText = result.object as? String {
-                    self.collectionView.restore()
+            searchObservation = NotificationCenter.default.addObserver(forName: Notifications.searchTapped.name, object: nil, queue: nil) { [weak self] result in
+                if let searchText = result.object as? String, !searchText.isEmpty {
+                    self?.collectionView.restore()
                     viewModel.searchList(query: searchText)
+                } else {
+                    self?.movieCollectionViewDataSource = nil
+                    self?.collectionView.reloadData()
+                    self?.collectionView.restore()
+                    self?.emptyState(emptyPlaceHolderType: .search)
                 }
             }
         }
