@@ -33,7 +33,7 @@ class EmptyPlaceHolderView: UIView {
                 titleLabel.text = "Search"
                 detailsLabel.text = "Enter Your Text"
                 logoImageView.image = UIImage(named: "search_icon")
-                logoImageView.tintColor = .black
+                logoImageView.tintColor = UIColor(named: "TitleColor") ?? .black
             case .empty:
                 titleLabel.text = "No Data Yet"
             }
@@ -88,7 +88,7 @@ class EmptyPlaceHolderView: UIView {
         let label = UILabel()
         label.text = ""
         label.font = UIFont.boldSystemFont(ofSize: 16.0)
-        label.textColor = .black
+        label.textColor = UIColor(named: "TitleColor") ?? .black
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
 

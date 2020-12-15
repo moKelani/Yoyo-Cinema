@@ -18,28 +18,29 @@ class MovieDetailsViewController: UIViewController {
     let scrollView: UIScrollView = {
         let scroll = UIScrollView()
         scroll.translatesAutoresizingMaskIntoConstraints = false
-        scroll.backgroundColor = .white
+        scroll.backgroundColor = UIColor(named: "BackgroundColor") ?? .white
         return scroll
     }()
 
     let movieTitleLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 14)
+        label.font = UIFont.boldSystemFont(ofSize: 16)
+        label.textColor = UIColor(named: "TitleColor") ?? .black
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
 
     let movieReleaseDateLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 12)
-        label.textColor = UIColor(named: "YoyoGrayColor")
+        label.font = UIFont.systemFont(ofSize: 14)
+        label.textColor = UIColor(named: "TitleColor") ?? .black
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
 
     let movieRateLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 12)
+        label.font = UIFont.boldSystemFont(ofSize: 14)
         label.textColor = UIColor(named: "RateRedColor")
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -48,8 +49,8 @@ class MovieDetailsViewController: UIViewController {
     let movieOverViewLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-        label.font = UIFont.systemFont(ofSize: 15)
-        label.textColor = UIColor(named: "YoyoGrayColor")
+        label.font = UIFont.systemFont(ofSize: 14)
+        label.textColor = UIColor(named: "TitleColor") ?? .black
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -105,7 +106,7 @@ class MovieDetailsViewController: UIViewController {
 
     override func loadView() {
         super.loadView()
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor(named: "BackgroundColor") ?? .white
         view.addSubview(scrollView)
         [bannerImageView, movieImageView, baseInfoStackView, movieOverViewLabel].forEach {
             scrollView.addSubview($0)
@@ -119,7 +120,7 @@ class MovieDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         showDefaultNavigationBar()
-       // updateRighBarButton(isFavourite: isFavourited)
+        leftNavBarItems(backButton())
         movieDetailsViewModelInput.getMovieDetails()
 
     }
@@ -166,17 +167,35 @@ class MovieDetailsViewController: UIViewController {
      // MARK: - Methods
     var isFavourited = false
     func updateRighBarButton(isFavourite: Bool) {
-        let btnFavourite = UIButton(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
+        let btnFavourite = UIButton(type: .custom)
         btnFavourite.addTarget(self, action: #selector(favoriteTapped), for: .touchUpInside)
 
+        
+        
         if isFavourite {
             btnFavourite.setImage(UIImage(named: "selected_Favorite_icon"), for: .normal)
         } else {
             btnFavourite.setImage(UIImage(named: "favorite_icon"), for: .normal)
         }
+        btnFavourite.tintColor = UIColor(named: "TitleColor") ?? .black
 
         let rightButton = UIBarButtonItem(customView: btnFavourite)
+        rightButton.tintColor = UIColor(named: "TitleColor") ?? .black
         rightNavBarItems(rightButton)
+    }
+    
+    @objc func backButton() -> UIBarButtonItem {
+        let barButtonItem =  UIBarButtonItem()
+        barButtonItem.image = UIImage(named: "arrow_icon")
+        barButtonItem.tintColor = UIColor(named: "TitleColor") ?? .black
+        barButtonItem.action = #selector(backTapped)
+        barButtonItem.target = self
+        return barButtonItem
+    }
+    
+    @objc
+    func backTapped() {
+        navigationController?.popViewController(animated: true)
     }
 
     @objc

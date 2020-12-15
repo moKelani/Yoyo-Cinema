@@ -47,7 +47,7 @@ class FavoriteListViewController: UIViewController {
 
        override func loadView() {
            super.loadView()
-           view.backgroundColor = .white
+           view.backgroundColor = UIColor(named: "BackgroundColor") ?? .white
            view.addSubview(collectionView)
            updateConstraints()
        }

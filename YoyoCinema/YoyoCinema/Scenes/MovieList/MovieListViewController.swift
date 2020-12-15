@@ -87,7 +87,7 @@ class MovieListViewController: UIViewController {
 
     override func loadView() {
         super.loadView()
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor(named: "BackgroundColor") ?? .white
         view.addSubview(movieListStackView)
         movieListStackView.addArrangedSubview(collectionView)
         updateConstraints()
@@ -107,7 +107,6 @@ class MovieListViewController: UIViewController {
         if let viewModel = discoverListViewModelInput {
             rightNavBarItems(sortButton())
             title = "Discover"
-            self.collectionView.restore()
             viewModel.discoverList(sortby: "")
             
             observation = NotificationCenter.default.addObserver(forName: Notifications.sortByTapped.name, object: nil, queue: nil) { [weak self] result in
@@ -139,15 +138,6 @@ class MovieListViewController: UIViewController {
         }
 
     }
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        movieCollectionViewDataSource = nil
-    }
 
     // MARK: - Auto layout
 
@@ -163,7 +153,7 @@ class MovieListViewController: UIViewController {
     @objc func sortButton() -> UIBarButtonItem {
         let barButtonItem =  UIBarButtonItem()
         barButtonItem.image = UIImage(named: "sort_icon")
-        barButtonItem.tintColor = .black
+        barButtonItem.tintColor = UIColor(named: "TitleColor") ?? .black
         barButtonItem.action = #selector(sortTapped)
         barButtonItem.target = self
         return barButtonItem
@@ -183,16 +173,13 @@ extension MovieListViewController: MovieListViewModelOutput {
     
     func updateData(itemsForCollection: [ItemCollectionViewCellType]) {
         if let viewModel = movieListViewModelInput {
-            print("movieListViewModelInput", movieListViewModelInput)
           movieCollectionViewDataSource = MovieCollectionViewDataSource(itemsForCollection: itemsForCollection, viewModel: viewModel)
         }
         if let viewModel = discoverListViewModelInput {
-            print("discoverListViewModelInput", discoverListViewModelInput)
           movieCollectionViewDataSource = MovieCollectionViewDataSource(itemsForCollection: itemsForCollection, viewModel: viewModel)
         }
 
         if let viewModel = searchListViewModelInput {
-            print("searchListViewModelInput", searchListViewModelInput)
           movieCollectionViewDataSource = MovieCollectionViewDataSource(itemsForCollection: itemsForCollection, viewModel: viewModel)
         }
 

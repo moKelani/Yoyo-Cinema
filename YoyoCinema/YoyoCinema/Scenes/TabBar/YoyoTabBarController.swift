@@ -15,9 +15,9 @@ class YoyoTabBarController: UITabBarController {
         tabBar.layer.borderWidth = 0.0
         tabBar.layer.borderColor = UIColor.clear.cgColor
         tabBar.clipsToBounds = true
-         UITabBar.appearance().barTintColor = UIColor.white
-         UITabBar.appearance().tintColor = UIColor(named: "yellow_color")
-        UITabBar.appearance().unselectedItemTintColor = UIColor.black
+        UITabBar.appearance().barTintColor = UIColor(named: "BackgroundColor") ?? .white
+        UITabBar.appearance().tintColor = UIColor(named: "yellow_color")
+        UITabBar.appearance().unselectedItemTintColor = UIColor(named: "TitleColor") ?? .black
 
     }
     override func viewWillAppear(_ animated: Bool) {

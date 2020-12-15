@@ -28,7 +28,7 @@ class MovieTableViewHeader: UITableViewHeaderFooterView {
         let button = UIButton()
         button.setTitle("View All", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 14)
-        button.setTitleColor(.black, for: .normal)
+        button.setTitleColor(UIColor(named: "TitleColor") ?? .black, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -43,7 +43,7 @@ class MovieTableViewHeader: UITableViewHeaderFooterView {
     }
 
     private func setupViews() {
-      contentView.backgroundColor = .white
+      contentView.backgroundColor = UIColor(named: "BackgroundColor") ?? .white
       contentView.addSubview(titleLabel)
       contentView.addSubview(viewAllbutton)
 

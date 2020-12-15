@@ -39,7 +39,7 @@ class SortByViewController: UIViewController {
         super.loadView()
         title = "Sort By"
         showDefaultNavigationBar()
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor(named: "BackgroundColor") ?? .white
         view.addSubview(tableView)
         updateConstraints()
     }
